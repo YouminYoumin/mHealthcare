@@ -1,8 +1,12 @@
 package org.androidtown.mhealthcare;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 
 public class IndexActivity extends AppCompatActivity{
     public int index = 1; // Using for patient list index
+    public final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     Context mContext;
     String auth = "";
     ArrayList<String> items;
@@ -48,8 +53,10 @@ public class IndexActivity extends AppCompatActivity{
         ImageView img = (ImageView)findViewById(R.id.profile);
         if(auth.equals("doctor")) // Set image of user by user authority
             img.setImageResource(R.drawable.doctor);
-        else
+        else if(auth.equals("nurse"))
             img.setImageResource(R.mipmap.nurse);
+        else if(auth.equals("researcher"))
+            img.setImageResource(R.drawable.researcher);
 
         //Set ArrayList items for showing patient list
         items = new ArrayList<String>();
@@ -58,6 +65,25 @@ public class IndexActivity extends AppCompatActivity{
 
         listView = (ListView)findViewById(R.id.patientList);
         listView.setAdapter(adapter);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
 
         searchBtn.setOnClickListener(new View.OnClickListener(){
             @Override
