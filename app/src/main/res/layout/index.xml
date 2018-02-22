@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="80"
+        android:layout_marginTop="5dp">
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/doctor"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/profile"
+            android:textSize="25sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:text="Dr. Jim"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+            <EditText
+                android:id="@+id/searchbox"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:hint="patientnum or name"/>
+            <Button
+                android:id="@+id/searchBtn"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/searchbox"
+                android:text="Search"/>
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/patientList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="80"
+        android:gravity="center">
+        <Button
+            android:id="@+id/pre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="&lt;"
+            />
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/pre"
+            android:text="&gt;"/>
+    </RelativeLayout>
+</LinearLayout>
